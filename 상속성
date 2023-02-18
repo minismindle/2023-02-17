@@ -1,0 +1,99 @@
+객체지향
+-상속성
+-은닉성
+-다형성
+
+상속성
+//메모리
+// [[Player]]
+// [Knight]
+// 상속이란? 부모가 자식에게 유산을 물려주는 것
+
+
+//생성자(N) / 소멸자(1) 
+
+//생성자는 탄생을 기녕해서 호출되는 함수?
+// Knight 를 생성하면 -> Player의 생성자? Knight의 생성자?
+// -> 그냥 둘다 호출하자!
+// GameObject
+//-Creature
+//-- Player,Monster,Npc,Pet
+//-Projectile
+//-- Arrow, Fireball
+//-Env
+//Item
+//-Weapon
+//--Sword, Bow
+//-Armor
+//--Helmet,Boots,Armor
+//-Consumable
+//--Potion,Scroll
+class GameObject
+{
+  public:
+  int _objectid;
+};
+class Player : public GamObject
+{
+public:
+    Player()
+    {
+        _hp = 0;
+        _attack = 0;
+        _defecne = 0;
+        cout << "Player () 기본 생성자 호출" << endl;
+    }
+    Player(int hp)
+    {
+        _hp = hp;
+        _attack = 0;
+        _defecne = 0;
+        cout << "Player () 기본 생성자 호출" << endl;
+    }
+    ~Player()
+    {
+        cout << "~Player() 소멸자 호출" << endl;
+    }
+    void Move() { cout << "Player Move" << endl; }
+    void Attack() { cout << "Player Attack" << endl; }
+    void Die() { cout << "Player Die" << endl; }
+public:
+    int _hp;
+    int _attack;
+    int _defecne;
+};
+class Knight : public Player
+{
+public:
+    Knight()
+        /*
+            선처리 영역
+            여기서 Player() 생성자를 호출
+        */
+    {
+        _stamina = 100;
+        cout << "Knight () 기본 생성자 호출" << endl;
+    }
+    Knight(int stamina) : Player(100)
+    {
+        _stamina = stamina;
+        cout << "Knight (int) 기본 생성자 호출" << endl;
+    }
+    ~Knight()
+    {
+        cout << "~Knight() 소멸자 호출" << endl;
+    }
+    /*
+        후처리 영역
+        -여기서 ~Player() 소멸자를 호출
+    */
+    //재정의 : 부모님의 유산을 거부하고 새로운 이름으로 만들 수 있다.
+    void Move() { cout << "Knight Move" << endl; }
+public:
+    int _stamina;
+};
+class Mage : public Player
+{
+public:
+    int _mp;
+};
