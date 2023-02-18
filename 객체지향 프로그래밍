@@ -1,0 +1,28 @@
+절차지향 프로그래밍
+절차 -> 함수
+함수가 메인이 되어 흐름을 조절
+c++은 절차지향과 객체지향의 혼합
+
+객체지향 프로그래밍
+데이터 + 가공(로직,동작)
+
+객체지향 = 객체
+객체란? ex)플레이어, 몬스터, GameRoom
+
+-class
+void Knight::Move(int y, int x)
+{
+    posY = y;
+    posX = x;
+}
+k1.Move(2, 2);
+
+-struct
+void Move(Knight* knight,int y, int x)
+{
+    knight->posY = y;
+    knight->posX = x;
+}
+k1.Move(&k1, 2, 2);
+
+class를 사용하면 메모리 효율에 대한 차이는 미미하지만  더 안정되고 깔끔하게 보인다.
